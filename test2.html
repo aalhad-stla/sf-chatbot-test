@@ -45,13 +45,29 @@
             // Clear previous chatbot
             chatbotContainer.innerHTML = '';
 
-            // Create a new script element
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.text = code;
+            // Create a temporary div to hold the code
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = code;
 
-            // Append the script to the container
-            chatbotContainer.appendChild(script);
+            // Extract and append <style> elements
+            const styles = tempDiv.getElementsByTagName('style');
+            for (let i = 0; i < styles.length; i++) {
+                const style = document.createElement('style');
+                style.textContent = styles[i].textContent;
+                document.head.appendChild(style);
+            }
+
+            // Extract and append <script> elements
+            const scripts = tempDiv.getElementsByTagName('script');
+            for (let i = 0; i < scripts.length; i++) {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.text = scripts[i].textContent;
+                chatbotContainer.appendChild(script);
+            }
+
+            // Append any other HTML content (if needed)
+            chatbotContainer.appendChild(tempDiv);
         });
     </script>
 
