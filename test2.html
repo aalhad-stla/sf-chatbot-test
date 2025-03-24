@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Chatbot Loader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #chatbotContainer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chatbot Loader</h1>
+    <textarea id="chatbotCode" placeholder="Paste your chatbot code here..."></textarea>
+    <button id="loadChatbot">Load Chatbot</button>
+
+    <div id="chatbotContainer"></div>
+
+    <script>
+        document.getElementById('loadChatbot').addEventListener('click', function() {
+            const code = document.getElementById('chatbotCode').value;
+            const chatbotContainer = document.getElementById('chatbotContainer');
+
+            // Clear previous chatbot
+            chatbotContainer.innerHTML = '';
+
+            // Create a new script element
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.text = code;
+
+            // Append the script to the container
+            chatbotContainer.appendChild(script);
+        });
+    </script>
+
+</body>
+</html>
